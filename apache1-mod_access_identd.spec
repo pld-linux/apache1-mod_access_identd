@@ -4,20 +4,19 @@ Summary:	Apache module: access based on ident (RFC1413)
 Summary(pl):	Modu³ do apache: dostêp na podstawie protoko³u ident (RFC1413)
 Name:		apache1-mod_%{mod_name}
 Version:	1.2.0
-Release:	0.1
+Release:	0.3
 License:	MeepZor Consulting Public Licence (MCPL)
 Group:		Networking/Daemons
 Source0:	http://meepzor.com/packages/mod_%{mod_name}/mod_%{mod_name}-%{version}.tar.gz
 # Source0-md5:	67a5a1b9d5862eeaf2ba812f6dca98d9
 Source1:	http://meepzor.com/packages/mod_access_identd/LICENCE.txt
 URL:		http://meepzor.com/packages/mod_access_identd/
-BuildRequires:	apache1-devel
-Requires(post,preun):	%{apxs}
-Requires:	apache1
+BuildRequires:	apache1-devel >= 1.3.33-2
+Requires:	apache1 >= 1.3.33-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
-%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR)
+%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
+%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)
 
 %description
 A security module for the Apache Web server, supplying mandatory
@@ -43,29 +42,31 @@ u¿ytku g³ównie w intranetach.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_pkglibdir}
+install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/conf.d}
 
 install mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
 cp %{SOURCE1} .
+
+echo 'LoadModule %{mod_name}_module	modules/mod_%{mod_name}.so' > \
+	$RPM_BUILD_ROOT%{_sysconfdir}/conf.d/90_mod_%{mod_name}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%{apxs} -e -a -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
-if [ -f /var/lock/subsys/httpd ]; then
-	/etc/rc.d/init.d/httpd restart 1>&2
+if [ -f /var/lock/subsys/apache ]; then
+	/etc/rc.d/init.d/apache restart 1>&2
 fi
 
 %preun
 if [ "$1" = "0" ]; then
-	%{apxs} -e -A -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
-	if [ -f /var/lock/subsys/httpd ]; then
-		/etc/rc.d/init.d/httpd restart 1>&2
+	if [ -f /var/lock/subsys/apache ]; then
+		/etc/rc.d/init.d/apache restart 1>&2
 	fi
 fi
 
 %files
 %defattr(644,root,root,755)
 %doc README CHANGELOG mod_access_identd.html LICENCE.txt
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/conf.d/*_mod_%{mod_name}.conf
 %attr(755,root,root) %{_pkglibdir}/*
