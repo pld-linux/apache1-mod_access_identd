@@ -4,7 +4,7 @@ Summary:	Apache module: access based on ident (RFC1413)
 Summary(pl):	Modu³ do apache: dostêp na podstawie protoko³u ident (RFC1413)
 Name:		apache1-mod_%{mod_name}
 Version:	1.2.0
-Release:	0.3
+Release:	0.4
 License:	MeepZor Consulting Public Licence (MCPL)
 Group:		Networking/Daemons
 Source0:	http://meepzor.com/packages/mod_%{mod_name}/mod_%{mod_name}-%{version}.tar.gz
@@ -58,7 +58,7 @@ if [ -f /var/lock/subsys/apache ]; then
 	/etc/rc.d/init.d/apache restart 1>&2
 fi
 
-%preun
+%postun
 if [ "$1" = "0" ]; then
 	if [ -f /var/lock/subsys/apache ]; then
 		/etc/rc.d/init.d/apache restart 1>&2
