@@ -1,5 +1,5 @@
 %define		mod_name	access_identd
-%define 	apxs		%{_sbindir}/apxs1
+%define 	apxs		/usr/sbin/apxs1
 Summary:	Apache module: access based on ident (RFC1413)
 Summary(pl):	Modu³ do apache: dostêp na podstawie protoko³u ident (RFC1413)
 Name:		apache1-mod_%{mod_name}
@@ -17,7 +17,7 @@ Requires:	apache1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
-%define		_sysconfdir     /etc/httpd
+%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR)
 
 %description
 A security module for the Apache Web server, supplying mandatory
