@@ -28,7 +28,7 @@ clients not running an RFC1413 server daemon. As a result, this module
 is best suited for intranets.
 
 %description -l pl
-Modu³ zabezpieczj±cy dla serwera apache dostarczaj±cy obowi±zkow±
+Modu³ zabezpieczaj±cy dla serwera apache dostarczaj±cy obowi±zkow±
 kontrolê dostêpu bazuj±c± na nazwie u¿ytkownika i ho¶cie klienta.
 Listy dostêpu uzyskiwane s± przy pomocy protoko³u ident (RFC1413),
 zatem u¿yteczno¶æ jest ograniczona je¶li dostêp nastêpuje przez proxy
@@ -49,7 +49,7 @@ install mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
 cp %{SOURCE1} .
 
 %clean
-#rm -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
 %post
 %{apxs} -e -a -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
