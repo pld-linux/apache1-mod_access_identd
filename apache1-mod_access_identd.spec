@@ -12,6 +12,7 @@ Source0:	http://meepzor.com/packages/mod_%{mod_name}/mod_%{mod_name}-%{version}.
 Source1:	http://meepzor.com/packages/mod_access_identd/LICENCE.txt
 URL:		http://meepzor.com/packages/mod_access_identd/
 BuildRequires:	apache1-devel >= 1.3.33-2
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires:	apache1 >= 1.3.33-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -54,15 +55,11 @@ echo 'LoadModule %{mod_name}_module	modules/mod_%{mod_name}.so' > \
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if [ -f /var/lock/subsys/apache ]; then
-	/etc/rc.d/init.d/apache restart 1>&2
-fi
+%service -q apache restart
 
 %postun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/apache ]; then
-		/etc/rc.d/init.d/apache restart 1>&2
-	fi
+	%service -q apache restart
 fi
 
 %files
