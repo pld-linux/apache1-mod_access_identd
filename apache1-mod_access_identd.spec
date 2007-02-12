@@ -1,7 +1,7 @@
 %define		mod_name	access_identd
 %define 	apxs		/usr/sbin/apxs1
 Summary:	Apache module: access based on ident (RFC1413)
-Summary(pl):	Modu³ do apache: dostêp na podstawie protoko³u ident (RFC1413)
+Summary(pl.UTF-8):   ModuÅ‚ do apache: dostÄ™p na podstawie protokoÅ‚u ident (RFC1413)
 Name:		apache1-mod_%{mod_name}
 Version:	1.2.0
 Release:	0.4
@@ -27,13 +27,13 @@ is of limited usefulness if document access is through a proxy or by
 clients not running an RFC1413 server daemon. As a result, this module
 is best suited for intranets.
 
-%description -l pl
-Modu³ zabezpieczaj±cy dla serwera apache dostarczaj±cy obowi±zkow±
-kontrolê dostêpu bazuj±c± na nazwie u¿ytkownika i ho¶cie klienta.
-Listy dostêpu uzyskiwane s± przy pomocy protoko³u ident (RFC1413),
-zatem u¿yteczno¶æ jest ograniczona je¶li dostêp nastêpuje przez proxy
-lub klienci nie posiadaj± serwera identd. Modu³ przeznaczony jest do
-u¿ytku g³ównie w intranetach.
+%description -l pl.UTF-8
+ModuÅ‚ zabezpieczajÄ…cy dla serwera apache dostarczajÄ…cy obowiÄ…zkowÄ…
+kontrolÄ™ dostÄ™pu bazujÄ…cÄ… na nazwie uÅ¼ytkownika i hoÅ›cie klienta.
+Listy dostÄ™pu uzyskiwane sÄ… przy pomocy protokoÅ‚u ident (RFC1413),
+zatem uÅ¼ytecznoÅ›Ä‡ jest ograniczona jeÅ›li dostÄ™p nastÄ™puje przez proxy
+lub klienci nie posiadajÄ… serwera identd. ModuÅ‚ przeznaczony jest do
+uÅ¼ytku gÅ‚Ã³wnie w intranetach.
 
 %prep
 %setup -q -n mod_%{mod_name}
