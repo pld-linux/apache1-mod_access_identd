@@ -1,7 +1,7 @@
 %define		mod_name	access_identd
 %define 	apxs		/usr/sbin/apxs1
 Summary:	Apache module: access based on ident (RFC1413)
-Summary(pl.UTF-8):   Moduł do apache: dostęp na podstawie protokołu ident (RFC1413)
+Summary(pl.UTF-8):	Moduł do apache: dostęp na podstawie protokołu ident (RFC1413)
 Name:		apache1-mod_%{mod_name}
 Version:	1.2.0
 Release:	0.4
