@@ -11,7 +11,7 @@ Source0:	http://meepzor.com/packages/mod_%{mod_name}/mod_%{mod_name}-%{version}.
 # Source0-md5:	67a5a1b9d5862eeaf2ba812f6dca98d9
 Source1:	http://meepzor.com/packages/mod_access_identd/LICENCE.txt
 URL:		http://meepzor.com/packages/mod_access_identd/
-BuildRequires:	apache1-devel >= 1.3.33-2
+BuildRequires:	apache1-devel >= 1.3.39
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires:	apache1 >= 1.3.33-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
