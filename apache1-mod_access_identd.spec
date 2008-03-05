@@ -4,7 +4,7 @@ Summary:	Apache module: access based on ident (RFC1413)
 Summary(pl.UTF-8):	Moduł do apache: dostęp na podstawie protokołu ident (RFC1413)
 Name:		apache1-mod_%{mod_name}
 Version:	1.2.0
-Release:	0.4
+Release:	0.5
 License:	MeepZor Consulting Public Licence (MCPL)
 Group:		Networking/Daemons
 Source0:	http://meepzor.com/packages/mod_%{mod_name}/mod_%{mod_name}-%{version}.tar.gz
@@ -13,7 +13,7 @@ Source1:	http://meepzor.com/packages/mod_access_identd/LICENCE.txt
 URL:		http://meepzor.com/packages/mod_access_identd/
 BuildRequires:	apache1-devel >= 1.3.39
 BuildRequires:	rpmbuild(macros) >= 1.268
-Requires:	apache1 >= 1.3.33-2
+Requires:	apache1(EAPI)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
